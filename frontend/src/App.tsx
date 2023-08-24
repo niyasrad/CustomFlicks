@@ -10,6 +10,10 @@ const router = createBrowserRouter([
     element: <Home />
   },
   {
+    path: '/profile',
+    element: <div></div>
+  },
+  {
     path: '*',
     element: <div>Not Found</div>
   }
