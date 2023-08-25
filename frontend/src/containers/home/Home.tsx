@@ -3,6 +3,7 @@ import Loader from "../../components/loader/Loader";
 import { HomeWrapper } from "./Home.styles";
 import { ThemeEnum, useThemeContext } from "../../themes/Theme";
 import TopBar from "../../components/topbar/TopBar";
+import DayRec from "../../components/dayrec/DayRec";
 
 export default function Home() {
 
@@ -12,7 +13,7 @@ export default function Home() {
     useEffect(() => {
         
         const timeout = setTimeout(() => {
-            setTheme!(ThemeEnum.RSK)
+            setTheme!(ThemeEnum.PRE)
             setLoading(false)
         }, 1000)
 
@@ -32,6 +33,7 @@ export default function Home() {
     return (
         <HomeWrapper>
             <TopBar />
+            <DayRec />
         </HomeWrapper>    
     )
 }

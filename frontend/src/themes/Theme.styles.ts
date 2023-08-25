@@ -1,10 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
 export const premium: DefaultTheme = {
-    primary: '#05D2FF',
+    primary: '#FFA500',
     secondary: '#FFD700',
     accentpri: '#CD0A3B',
-    accentsec: '#800080',
+    accentsec: '#B15C24',
     background: '#1B1B1B'
 }
 
