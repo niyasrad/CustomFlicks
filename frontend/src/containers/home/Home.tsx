@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
-import { HomeWrapper } from "./Home.styles";
+import { HomeMovies, HomeWrapper } from "./Home.styles";
 import { ThemeEnum, useThemeContext } from "../../themes/Theme";
 import TopBar from "../../components/topbar/TopBar";
 import DayRec from "../../components/dayrec/DayRec";
+import MovieGen from "../../components/moviegen/MovieGen";
 
 export default function Home() {
 
@@ -14,8 +15,15 @@ export default function Home() {
         
         const timeout = setTimeout(() => {
             setTheme!(ThemeEnum.PRE)
-            setLoading(false)
-        }, 1000)
+            
+            const secondTimeout = setTimeout(() => {
+                setLoading(false)
+            }, 2000)
+
+            return () => {
+                clearTimeout(secondTimeout)
+            }
+        }, 1500)
 
         return () => {
             clearTimeout(timeout)
@@ -34,6 +42,11 @@ export default function Home() {
         <HomeWrapper>
             <TopBar />
             <DayRec />
+            <HomeMovies>
+                <MovieGen genre="Horror"/>
+                <MovieGen genre="Action"/>
+                <MovieGen genre="Horror"/>
+            </HomeMovies>
         </HomeWrapper>    
     )
 }

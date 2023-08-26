@@ -17,7 +17,7 @@ interface RecResponse {
 }
 
 const sampleResponse: RecResponse = {
-    title: "Sinister 2",
+    title: "SINISTER 2",
     desc: "Courtney Collins, a young mother, and her twin sons move into a haunted rural house and start experiencing a string of supernatural occurrences linked with the demon Bughuul.",
     genres: ['Horror', 'Fun', 'Raunchy'],
     poster: "https://images7.alphacoders.com/614/614609.jpg",
