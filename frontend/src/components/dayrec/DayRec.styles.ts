@@ -6,7 +6,6 @@ export const DayRecWrapper = styled.div`
     box-sizing: border-box;
     cursor: pointer;
     margin: auto;
-    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
     gap: 2rem;
@@ -16,7 +15,7 @@ export const DayRecWrapper = styled.div`
 
     img {
         width: 100%;
-        max-width: 50%;
+        max-width: 60%;
         height: auto;
         object-fit: cover;
         border-radius: 2rem;
@@ -78,6 +77,7 @@ export const DayRecDetails = styled.div`
 
     h4 {
         letter-spacing: 0.5em;
+        word-break: keep-all;
         padding-top: 1rem;
         color: white;
         font-size: 1.5em;
