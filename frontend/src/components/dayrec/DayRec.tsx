@@ -1,58 +1,57 @@
+import { useEffect, useState } from "react";
+import { GenreNames, Genres, MovieInformation, useMovies } from "../../hooks/Movies.hook";
 import { DayRecDetails, DayRecWrapper, GenreName } from "./DayRec.styles";
+import Loader from "../loader/Loader";
 
-export function RecGenre({ genre }: { genre: string }) {
+export function RecGenre({ genre }: { genre: Genres }) {
     return (
         <GenreName>
-            <p>{genre}</p>
+            <p>{GenreNames[genre]}</p>
         </GenreName>
     )
 }
 
-interface RecResponse {
-    title: string;
-    desc: string;
-    genres: Array<string>;
-    poster: string;
-    redir: string;
-}
-
-const sampleResponse: RecResponse = {
-    title: "SINISTER 2",
-    desc: "Courtney Collins, a young mother, and her twin sons move into a haunted rural house and start experiencing a string of supernatural occurrences linked with the demon Bughuul.",
-    genres: ['Horror', 'Fun', 'Raunchy'],
-    poster: "https://images7.alphacoders.com/614/614609.jpg",
-    redir: "https://www.youtube.com/watch?v=fChx_YZUAR0"
-}
-
 export default function DayRec() {
+    
+    const { data, isLoading } = useMovies(null)
+    const [recommendation, setRecommendation] = useState<MovieInformation | null>(null)
+
+    useEffect(() => {
+        if (data) {
+            setRecommendation(data[0])
+        }
+    }, [data])
+
+    if (isLoading || !recommendation) {
+        return <Loader />
+    }
 
     return (
         <DayRecWrapper>
             <img
-                src={sampleResponse.poster}
+                src={`https://image.tmdb.org/t/p/original${recommendation.backdrop_path}`}
                 alt="Movie Poster"
             />
             <DayRecDetails>
                 <div className="dayrec__link">
                     <h6>CF Recommends</h6>
                     <a 
-                        href={sampleResponse.redir}
+                        href="#"
                         target="_blank"
                     >
                         <button>WATCH</button>
                     </a>
                 </div>
                 <div>
-                    <h4>{sampleResponse.title}</h4>
-                    <p>{sampleResponse.desc}</p>
+                    <h4>{recommendation.title}</h4>
+                    <p>{recommendation.overview}</p>
                 </div>
                 <div>
                     <h6>Genres</h6>
                     <div className="dayrec__genres">
-                        { sampleResponse.genres.map((genre: string) => <RecGenre genre={genre} />) }
+                        {  recommendation.genre_ids.map((genre: number) => <RecGenre genre={genre} />) }
                     </div>
                 </div>
-
             </DayRecDetails>
         </DayRecWrapper>
     )

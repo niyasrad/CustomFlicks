@@ -5,6 +5,7 @@ import { ThemeEnum, useThemeContext } from "../../themes/Theme";
 import TopBar from "../../components/topbar/TopBar";
 import DayRec from "../../components/dayrec/DayRec";
 import MovieGen from "../../components/moviegen/MovieGen";
+import { Genres } from "../../hooks/Movies.hook";
 
 export default function Home() {
 
@@ -43,9 +44,9 @@ export default function Home() {
             <TopBar />
             <DayRec />
             <HomeMovies>
-                <MovieGen genre="Horror"/>
-                <MovieGen genre="Action"/>
-                <MovieGen genre="Horror"/>
+                <MovieGen genre={Genres.HORROR}/>
+                <MovieGen genre={Genres.ADVENTURE}/>
+                <MovieGen genre={Genres.COMEDY}/>
             </HomeMovies>
         </HomeWrapper>    
     )

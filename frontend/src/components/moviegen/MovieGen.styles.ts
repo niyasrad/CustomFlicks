@@ -14,11 +14,8 @@ export const MovieGenWrapper = styled.div`
 
 export const MovieGenTitle = styled.p`
     font-size: 1.2em;
+    user-select: none;
     color: ${ props => props.theme.primary };
-
-    @media only screen and (max-width: 990px) {
-        font-size: 1.2em;
-    }
 `
 
 export const MovieGenList = styled.div`
@@ -63,7 +60,7 @@ export const MovieGenCards = styled.div`
 export const MovieCard = styled.div`
     position: relative;
     height: 6rem;
-    min-width: 10rem;
+    min-width: 12rem;
     border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
@@ -75,6 +72,7 @@ export const MovieCard = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        user-select: none;
     }
 
     &:hover {
@@ -91,6 +89,7 @@ export const MovieCardTitle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
     background-color: ${ props => props.theme.primary };
     opacity: 0;
     transition: all 0.5s ease-in-out;
@@ -99,7 +98,7 @@ export const MovieCardTitle = styled.div`
         text-align: center;
         color: white;
         font-weight: 600;
-        font-size: 1.1em;
+        font-size: 1em;
         word-break: keep-all;
 
     } 

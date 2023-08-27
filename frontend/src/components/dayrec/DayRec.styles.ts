@@ -76,22 +76,21 @@ export const DayRecDetails = styled.div`
     }
 
     h4 {
-        letter-spacing: 0.5em;
+        letter-spacing: 0.2em;
         word-break: keep-all;
         padding-top: 1rem;
         color: white;
-        font-size: 1.5em;
+        font-size: 1.3em;
         overflow: hidden;
     }
 
     h6 {
         color: ${ props => props.theme.primary };
-        font-size: 1.3em;
+        font-size: 1.1em;
     }
 
     p {
         color: white;
-        letter-spacing: 0.1em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;

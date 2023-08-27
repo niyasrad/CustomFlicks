@@ -1,36 +1,43 @@
 import { useRef } from "react";
-import { MovieGenInterface, moviesList } from "./MovieGen.data";
 import { MovieCard, MovieCardTitle, MovieGenCards, MovieGenList, MovieGenTitle, MovieGenWrapper, MovieNext } from "./MovieGen.styles";
+import { GenreNames, Genres, MovieInformation, useMovies } from "../../hooks/Movies.hook";
+import { Loading } from "../loader/Loader";
 
-export default function MovieGen({ genre }: { genre: string }) {
+export default function MovieGen({ genre }: { genre: Genres }) {
+
+    const { data, isLoading } = useMovies(genre)
 
     const cardsContainerRef = useRef<HTMLDivElement | null>(null);
     const cardWidth = 16 * 12
-    const totalCardWidth = cardWidth * moviesList.length
-    const gap = 16 * 2; 
+    const totalCardWidth = cardWidth * (data ? data.length : 12)
+    const gap = 16 * 2
 
     const handleNextClick = () => {
         const scrollDistance = cardWidth + gap
         if (cardsContainerRef.current) {
             cardsContainerRef.current.style.scrollBehavior = 'smooth'
             cardsContainerRef.current.scrollLeft += scrollDistance;
-            if (cardsContainerRef.current.scrollLeft + (scrollDistance/4) >= totalCardWidth - cardsContainerRef.current.clientWidth) {
+            if (cardsContainerRef.current.scrollLeft + (scrollDistance/6) >= totalCardWidth - cardsContainerRef.current.clientWidth) {
                 cardsContainerRef.current.scrollLeft = 0
             }
         }
     }
 
+    if (isLoading || !data) {
+        return <Loading />
+    }
+
     return (
         <MovieGenWrapper>
-            <MovieGenTitle>{genre}</MovieGenTitle>
+            <MovieGenTitle>{GenreNames[genre]}</MovieGenTitle>
             <MovieGenList>
                 <MovieGenCards
                     ref={cardsContainerRef}
                 >
                 {
-                    moviesList.map((movie: MovieGenInterface) => (
+                    data.map((movie: MovieInformation) => (
                         <MovieCard>
-                            <img src={movie.img} alt="Movie poster" />
+                            <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="Movie poster" />
                             <MovieCardTitle>
                                 <p>{movie.title}</p>
                             </MovieCardTitle>

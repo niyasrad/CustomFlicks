@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 export const TopBarWrapper = styled(motion.div)`
     margin: auto;
-    padding: 0.5rem 3rem;
+    padding: 0 3rem;
     box-sizing: border-box;
     width: 90%;
     display: flex;
@@ -26,7 +26,7 @@ export const TopBarLeft = styled.div`
     }
 
     p {
-        font-size: 1.2em;
+        font-size: 1em;
         letter-spacing: 0.2em;
         color: ${ props => props.theme.primary };
     }
@@ -49,7 +49,7 @@ export const TopBarRight = styled.div`
     align-items: center;
     gap: 3rem;
     letter-spacing: 0.2em;
-    font-size: 1.1em;
+    font-size: 1em;
 
     a {
         text-decoration: none;
