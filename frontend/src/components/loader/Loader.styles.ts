@@ -13,6 +13,7 @@ export const LoaderWrapper = styled.div`
 
 export const LoaderLogo = styled(motion.img)`
     width: 50%;
-    max-width: 12rem;
+    max-width: 10rem;
+    margin: auto;
     object-fit: contain;
 `
