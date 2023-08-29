@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
 export const TopBarWrapper = styled(motion.div)`
-    margin: auto;
+    margin: 0 auto;
     padding: 0 3rem;
     box-sizing: border-box;
     width: 90%;
