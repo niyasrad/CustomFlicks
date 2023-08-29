@@ -3,6 +3,7 @@ import Home from './containers/home/Home'
 import { ThemeProvider } from 'styled-components'
 import { ThemeEnum, useThemeContext } from './themes/Theme'
 import { premium, regular, risky } from './themes/Theme.styles'
+import Profile from './containers/profile/Profile'
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/profile',
-    element: <div></div>
+    element: <Profile />
   },
   {
     path: '*',
