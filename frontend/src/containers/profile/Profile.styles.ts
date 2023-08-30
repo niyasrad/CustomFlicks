@@ -19,7 +19,7 @@ export const ProfileMenu = styled.div`
     width: 50rem;
     height: auto;
     max-width: 90%;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 2rem;
     overflow: hidden;
     box-shadow:  0px 4px 20px 0px ${ props => props.theme.primary };
