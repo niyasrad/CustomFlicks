@@ -1,29 +1,21 @@
 import { useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
 import { HomeMovies, HomeWrapper } from "./Home.styles";
-import { ThemeEnum, useThemeContext } from "../../themes/Theme";
 import TopBar from "../../components/topbar/TopBar";
 import DayRec from "../../components/dayrec/DayRec";
 import MovieGen from "../../components/moviegen/MovieGen";
 import { Genres } from "../../hooks/Movies.hook";
+import { useGlobalContext } from "../../contexts/Global.context";
 
 export default function Home() {
 
     const [loading, setLoading] = useState<boolean>(true)
-    const { setTheme } = useThemeContext()
+    const { isLoggedIn } = useGlobalContext()
 
     useEffect(() => {
         
         const timeout = setTimeout(() => {
-            setTheme!(ThemeEnum.PRE)
-            
-            const secondTimeout = setTimeout(() => {
-                setLoading(false)
-            }, 2000)
-
-            return () => {
-                clearTimeout(secondTimeout)
-            }
+            setLoading(false)
         }, 1500)
 
         return () => {
@@ -32,7 +24,7 @@ export default function Home() {
 
     }, [])
 
-    if (loading) {
+    if (loading || !isLoggedIn) {
         return (
             <Loader />
         )
