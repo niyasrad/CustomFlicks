@@ -7,7 +7,7 @@ CORS(app)
 
 # DataFrame loading
 def load_user_data():
-    df = pd.read_csv("firstreview.csv")
+    df = pd.read_csv("Netflix_Userbase.csv")
     return df
 
 # Loading the data 
