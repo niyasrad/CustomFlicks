@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # DataFrame loading
 def load_user_data():
-    df = pd.read_csv("Netflix_Userbase.csv")
+    df = pd.read_csv("firstreview.csv")
     return df
 
 # Loading the data 
