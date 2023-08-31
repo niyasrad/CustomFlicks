@@ -7,7 +7,7 @@ import DEVICE_TABLET from '../../assets/devices/DEVICE_TABLET.svg'
 import DEVICE_LAPTOP from '../../assets/devices/DEVICE_LAPTOP.svg'
 import DEVICE_TV from '../../assets/devices/DEVICE_TV.svg'
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useGlobalContext } from "../../contexts/Global.context";
 
 export function Profiler({ metric, value, img }: { metric: string, value: string, img?: string }) {
 
@@ -23,11 +23,12 @@ export function Profiler({ metric, value, img }: { metric: string, value: string
     )
 }
 
-interface ProfilerType {
+export interface ProfilerType {
     Age: number,
     Country: string,
     Device: string,
     Gender: string,
+    Label: string,
     "Join Date": string,
     "Last Payment Date": string,
     "Monthly Revenue": number,
@@ -38,19 +39,24 @@ interface ProfilerType {
 
 export default function Profile() {
 
-    const [profileData, setProfileData] = useState<ProfilerType>()
     const [loading, setLoading] = useState<boolean>(true)
 
-    useEffect(() => {
-        axios.get(import.meta.env.VITE_BASE_API + '/get_user/1')
-        .then((res) => {
-            setProfileData(res.data)
-            setLoading(false)
-        })
-        .catch(() => {})
-    })
+    const { isLoggedIn, profile } = useGlobalContext()
 
-    if (loading || !profileData) {
+    useEffect(() => {
+        if (profile) {
+            const timeout = setTimeout(() => {
+                setLoading(false)
+            }, 1500)
+    
+            return () => {
+                clearTimeout(timeout)
+            }
+        }
+    }, [profile])
+
+
+    if (loading || !profile || !isLoggedIn) {
         return <Loader />
     }
 
@@ -61,19 +67,19 @@ export default function Profile() {
                 <ProfileData>
                     <Profiler 
                         metric="Plan"
-                        value={profileData["Subscription Type"]}
+                        value={profile["Subscription Type"]}
                     />
                     <Profiler 
                         metric="Country"
-                        value={profileData["Country"]}
+                        value={profile["Country"]}
                     />
                     <Profiler 
                         metric="Primary Device"
-                        value={profileData["Device"]}
+                        value={profile["Device"]}
                         img={
-                            profileData["Device"] === "Tablet" ? DEVICE_TABLET : 
-                            profileData["Device"] === "Laptop" ? DEVICE_LAPTOP :
-                            profileData["Device"] === "Smartphone" ? DEVICE_PHONE :
+                            profile["Device"] === "Tablet" ? DEVICE_TABLET : 
+                            profile["Device"] === "Laptop" ? DEVICE_LAPTOP :
+                            profile["Device"] === "Smartphone" ? DEVICE_PHONE :
                             DEVICE_TV   
                         }
                     />
