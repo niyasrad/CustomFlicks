@@ -58,10 +58,10 @@ export function LoginFields() {
         .then((res) => {
             setProfile!(res.data)
             setTheme!(res.data["Label"] === "least_interested" ? ThemeEnum.RSK : res.data["Label"] === "highly_interested" ? ThemeEnum.PRE : ThemeEnum.RGL)
+            navigate('/')
         })
         .catch(() => {})
         setIsLoggedIn!(true)
-        navigate('/')
     }
     
     return (
